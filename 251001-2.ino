@@ -19,10 +19,12 @@ int ledcolor = 0;
 
 bool ButtonPressed = false;
 
+String currentcolor = "led";
+
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  
   // make the pushbutton's pin an input:
   pinMode(Rpin, OUTPUT);
   pinMode(Gpin, OUTPUT);
@@ -30,10 +32,15 @@ void setup() {
 
   pinMode(ButtonPin, INPUT);
 
+  Serial.begin(9600);
+
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
+
+  Serial.print("Current Color:");
+  Serial.println(currentcolor);
   // read the input pin:
   int buttonState = digitalRead(ButtonPin);
   // print out the state of the button:
@@ -56,54 +63,63 @@ void loop() {
 
   //no light
   if(ledcolor == 0){
+    currentcolor="LED OFF";
     digitalWrite(Rpin, HIGH);
     digitalWrite(Gpin, HIGH);
     digitalWrite(Bpin, HIGH);
   }
   //R
   else if(ledcolor == 1){
+    currentcolor="R";
     digitalWrite(Rpin, LOW);
     digitalWrite(Gpin, HIGH);
     digitalWrite(Bpin, HIGH);
   }
   //G
   else if(ledcolor == 2){
+    currentcolor="G";
     digitalWrite(Rpin, HIGH);
     digitalWrite(Gpin, LOW);
     digitalWrite(Bpin, HIGH);
   }
   //B
   else if(ledcolor == 3){
+    currentcolor="B";
     digitalWrite(Rpin, HIGH);
     digitalWrite(Gpin, HIGH);
     digitalWrite(Bpin, LOW);
   }
   //Y
   else if(ledcolor == 4){
+    currentcolor="Y";
     digitalWrite(Rpin, LOW);
     digitalWrite(Gpin, LOW);
     digitalWrite(Bpin, HIGH);
   }
   //M
   else if(ledcolor == 5){
+    currentcolor="M";
     digitalWrite(Rpin, LOW);
     digitalWrite(Gpin, HIGH);
     digitalWrite(Bpin, LOW);
   }
   //C
   else if(ledcolor == 6){
+    currentcolor="C";
     digitalWrite(Rpin, HIGH);
     digitalWrite(Gpin, LOW);
     digitalWrite(Bpin, LOW);
   }
   //W
   else if(ledcolor == 7){
+    currentcolor="W";
     digitalWrite(Rpin, LOW);
     digitalWrite(Gpin, LOW);
     digitalWrite(Bpin, LOW);
   }
   //=no light
   else if(ledcolor == 8){
+    currentcolor="LED OFF";
     ledcolor = 0;
   }
 }
